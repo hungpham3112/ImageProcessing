@@ -63,7 +63,7 @@ def main(): # Set the page title
                 adjusted_image = filtered_image
             if st.button("Reset"):
                 adjusted_image = original_image
-        with col1:
+        with col:
             st.image(adjusted_image, channels="RGB")
             for color, index in zip(("red", "green", "blue"), range(0, 3)):        
                 vec_x, vec_y = coordinates(count(adjusted_image[:, :, index]))
