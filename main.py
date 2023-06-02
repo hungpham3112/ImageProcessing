@@ -1,5 +1,5 @@
 from PIL import Image
-from lib import count, coordinates, histogram_equalization
+from lib import count, coordinates, equalize_intensity, mean_filter, median_filter, gaussian_smoothing
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
@@ -37,20 +37,38 @@ def main(): # Set the page title
 
         # Adjust color balance based on slider values
         adjusted_image = adjust_color_balance(gain_red, gain_green, gain_blue, bias_red, bias_green, bias_blue, image)
+        original_image = adjusted_image
 
+        fig, ax = plt.subplots()
         # Create 2 frame as 2 columns
         col1, col2 = st.columns(2)
+        with col2:
+            if st.button("Equalization"):
+                equalized_image = equalize_intensity(adjusted_image)
+                for color, index in zip(("red", "green", "blue"), range(0, 3)):        
+                    vec_x, vec_y = coordinates(count(equalized_image[:, :, index]))
+                    ax.plot(vec_x, vec_y,color=color)
+                adjusted_image = equalized_image
+            if st.button("Median filter"):
+                filtered_image = median_filter(adjusted_image, 3)
+                adjusted_image = filtered_image
 
+
+            if st.button("Mean filter"):
+                filtered_image = mean_filter(adjusted_image, 3)
+                adjusted_image = filtered_image
+
+            if st.button("Gaussian Blur"):
+                filtered_image = gaussian_smoothing(adjusted_image, 3, 1.5)
+                adjusted_image = filtered_image
+            if st.button("Reset"):
+                adjusted_image = original_image
         with col1:
             st.image(adjusted_image, channels="RGB")
-
-        with col2:
-            fig, ax = plt.subplots()
             for color, index in zip(("red", "green", "blue"), range(0, 3)):        
                 vec_x, vec_y = coordinates(count(adjusted_image[:, :, index]))
                 ax.plot(vec_x, vec_y,color=color)
             st.pyplot(fig)
-            if st.button("equalization"):
-                adjusted_image = histogram_equalization(adjusted_image)
+
 if __name__ == "__main__":
     main()
