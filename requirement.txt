@@ -24,7 +24,7 @@ matplotlib==3.7.1
 mdurl==0.1.2
 mypy-extensions==1.0.0
 numpy==1.24.3
-opencv-python-headless==4.7.0.72
+opencv-python-headless==4.5.5.64
 packaging==23.1
 pandas==2.0.2
 pathspec==0.11.1
