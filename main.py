@@ -9,8 +9,8 @@ def adjust_color_balance(gain_red, gain_green, gain_blue, bias_red, bias_green, 
     adjusted_image = image.astype(float)
 
     adjusted_image[..., 0] = gain_red * adjusted_image[..., 0] + bias_red
-    adjusted_image[..., 1] = gain_green * adjusted_image[..., 1] + bias_blue
-    adjusted_image[..., 2] = gain_blue * adjusted_image[..., 2] + bias_green
+    adjusted_image[..., 1] = gain_green * adjusted_image[..., 1] + bias_green
+    adjusted_image[..., 2] = gain_blue * adjusted_image[..., 2] + bias_blue
 
     return np.clip(adjusted_image, 0, 255).astype(np.uint8)
 
