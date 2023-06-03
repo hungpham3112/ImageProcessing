@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-    <a href="https://hungpham3112-imageprocessing-main-9fumcc.streamlit.app/"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg"></a>
+    <a href="https://imageprocessing.streamlit.app/"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg"></a>
     <a href="https://github.com/psf/black"><img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code style: black"></a>
 </p>
 
@@ -15,4 +15,4 @@
 streamlit run main.py
 ```
 
-or click on [here](https://junctionx.streamlitapp.com/) to run in the cloud.
+or click on [here](https://imageprocessing.streamlitapp.com/) to run in the cloud.
